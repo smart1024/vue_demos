@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue框架的基本使用</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>我是小明我{{age}}岁</h1>
+    </div>
+</body>
+</html>
+<script>
+    /**
+     * 1、当应用程序引入vue框架这个框架会对外暴露一个Vue构造函数
+     * 2、同Vue构造函数可以创建Vue类实例
+     */
+    //打印Vue构造函数
+    console.log("Vue=="+Vue);
+
+    //打印Vue对象
+    // var vm = new Vue();
+    // console.log(vm);
+
+    //绑定div
+    var vm = new Vue({
+        //el属性为挂载点，将vue实例和html标签关联
+        el:"#app",
+        //data属性为Vue实例数据来源
+        data:{
+            age:188
+        }
+    });
+    //只要修改了Vue实例的属性的值，插值处都会改变
+    vm.age = 23;
+</script>
