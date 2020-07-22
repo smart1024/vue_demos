@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for的使用</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>非常常用的指令v-for</h1>
+        <!-- 遍历数字 -->
+        <h2 v-for="(item,index) in 5">{{index}}我是标题{{item}}</h2>
+
+        <h2 v-for="item in 5">我是标题{{item}}</h2>
+        <ul>
+            <!-- 遍历数组 -->
+            <li v-for="(item,index) in arr">{{item}}----{{key}}----{{index}}</li>
+        </ul>
+
+        <!-- 打印乘法口诀表 -->
+        <table>
+            <tr v-for="row in 9">
+                <td v-for="column in 9" v-show="row >= column">{{row}}*{{column}}={{row*column}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    var vm =new Vue({
+        el:"#app",
+        data:{
+            arr:["苹果","华为","小米","中兴"]
+        }
+    });
+</script>
