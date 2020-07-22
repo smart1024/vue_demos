@@ -26,7 +26,7 @@
 
     //绑定div
     var vm = new Vue({
-        //el属性为挂载点，将vue实例和html标签关联
+        //el属性为挂载点通常为选择器，将vue实例和html标签关联
         el:"#app",
         //data属性为Vue实例数据来源
         data:{
@@ -35,4 +35,5 @@
     });
     //只要修改了Vue实例的属性的值，插值处都会改变
     vm.age = 23;
+    vm.age = 9999;
 </script>
