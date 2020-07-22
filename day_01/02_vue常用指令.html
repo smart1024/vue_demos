@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue常用指令</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>下面指令是操作文本</h1>
+        <p v-text="msg"></p>
+        <p>{{msg}}</p>
+        <p v-html="msg"></p>
+        <div v-show="showList">
+            <ul>
+                <li v-show="3>8">吃饭</li>
+                <li v-show="5">睡觉</li>
+                <li>打游戏</li>
+            </ul>
+        </div>
+    </div>
+    
+</body>
+
+<script>
+/**
+修改文本内容
+1、v-text:当文本渲染(原样输出)，简写方式:{{}}
+2、v-html:内容当标签渲染(标签会被渲染)
+3、v-show:控制标签显示、隐藏,底层原理是display属性
+    v-show的值只要为true就显示，false就隐藏
+*/
+
+    //创建Vue实例
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            // msg:"Hello World !"
+            msg:"<a href='http://www.baidu.com'>百度</a>",
+            showList:true
+        }
+    });
+</script>
+</html>
