@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if练习</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>你的性别是什么</h1>
+        <ul>
+            <li v-if="'男'===sex">男</li>
+            <li v-else-if="'女'===sex">女</li>
+            <li v-else>其他</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    /**
+    v-if：切换开销大(适合加载后很少变化)
+    v-show:更高初始渲染开销(适合频繁切换场景)
+    */
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            sex:"女"
+        }
+    });
+</script>
