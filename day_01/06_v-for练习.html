@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for练习</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{hobby}}</h1>
+        <p>
+            <!-- 数据绑定 -->
+            <input type="text" v-model="hobby">
+            <button @click="add()">单击添加爱好</button>
+        </p>
+        <ul>
+            <li v-for="item in arr">{{item}}</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            hobby:"打球",
+            arr:[]
+        },
+        methods: {
+            add(){//向数组末尾添加元素
+                this.arr.push(this.hobby)
+            }
+        },
+    });
+</script>
