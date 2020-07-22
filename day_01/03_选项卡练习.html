@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选项卡练习</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="add('军事')">军事</button>
+        <button @click="add('新闻')">新闻</button>
+        <button @click="add('直播')">直播</button>
+        <ul v-show="info=='军事'">
+            <li>军事</li>
+        </ul>
+        <ul v-show="info=='新闻'">
+            <li>新闻</li>
+        </ul>
+        <ul v-show="info=='直播'">
+            <li>直播</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            info:"军事"
+        },
+        methods: {
+            add(info){
+                this.info = info;
+            }
+        },
+    });
+</script>
