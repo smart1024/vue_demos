@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue声明周期函数</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>生命周期函数----{{msg}}</div> 
+        <button @click="add">点击我</button>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:0
+        },
+        methods: {
+            add(){
+                this.msg++;
+            }
+        },
+        watch: {
+            
+        },
+        beforeCreate() {
+            console.log("beforeCreate------------函数在创建vm实例之前执行一次");
+            //因此这里访问不到vm属性
+            console.log(this.msg);
+        },
+        created() {
+            console.log("created------------在创建vm实例之后执行一次");
+            //这里可以访问到属性值
+            console.log(this.msg);
+        },
+        beforeMount() {
+            console.log("beforeMount------------在vm和模板关联之前调用一次");
+        },
+        mounted() { //实际开发中经从这个声明周期函数中拉取服务器数据
+            console.log("mounted------------在vm和模板关联后调用一次");
+        },
+        beforeUpdate() {
+            console.log("beforeUpdate------------属性值发生变化立即执行一次");
+            if(this.msg%2==0){
+                this.msg+=6;
+            }
+        },
+        updated() {
+            console.log("update------------属性值发生变化后立即执行一次");
+            if(this.msg < 10){
+                this.msg = "哈哈哈";
+            }
+        },
+    });
+</script>
