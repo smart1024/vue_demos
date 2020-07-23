@@ -54,6 +54,9 @@
                         this.gift = $event;
                     })
                 },
+                beforeDestroy() { //beforDestroy函数中销毁bus，不销毁的话会一直叠加的调用这个方法
+                    this.$bus.$off("sendCar");
+                },
             },
             son1:{
                 template:"#son1",
