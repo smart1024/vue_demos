@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios使用</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <button @click="fecthData">点击我发起get请求</button>
+        <button @click="postData">点击我发起post请求</button>
+
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"默认文本"
+        },
+        methods: {
+            fecthData(){
+                //发起get请求
+                // axios.get("./data.txt").then(function(obj){
+                //     console.log(obj);
+                //     vm.msg = obj.data;
+                // });
+                //箭头函数
+                axios.get("./data.txt").then(obj=>{
+                    vm.msg = obj.data;
+                });
+            },
+            postData(){
+                axios.post("./data.txt").then(obj=>{
+                    vm.msg = obj.data;
+                });
+            }
+        },
+    });
+</script>
