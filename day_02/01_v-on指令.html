@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-on指令</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>计数器{{count}}</h1>
+        <button v-on:click="add()">点我加1</button>
+        <!-- 方法不带参数可省略() -->
+        <button @click="sub">点我减1</button>
+        <!--@是v-on缩写 -->
+        <p @mouseenter="enter">绑定鼠标移入事件</p>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            count:0
+        },
+        methods: {
+            add(){
+                this.count++;
+                this.count = this.count>=10?10:this.count;
+            },
+            sub(){
+                this.count--;
+                this.count = this.count <=-6?-6:this.count;
+            },
+            enter(){
+                console.log("鼠标移到p标签");
+            }
+        },
+    });
+</script>
