@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父组件和子组件通信</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        #app{
+            width: 80%;
+            height: 300px;
+            background-color: red;
+            border: 2px solid black;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>我是最大根组件---{{msg}}</h1>
+
+        <!-- 给子组件传动态属性msg、car属性值-->
+        <son :msg="msg" :car="car"></son>
+    </div>
+
+    <!-- 子组件 -->
+    <template id="son">
+        <div>
+            我是儿子组件~~~~~~~{{msg}}
+            <h2>{{car}}</h2>
+        </div>
+    </template>
+</body>
+</html>
+<script>
+/**
+ * 父组件向子组件传值
+ * 1、父组件通过v-bind(简写:)以动态属性的形式给子组件传值
+ * 2、子组件通过props数组来接收父组件数据
+ */
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"我有1个亿",
+            car:"奔驰"
+        },
+        methods: {
+        },
+        components:{
+            son:{
+                template:"#son",
+                // 接收外部传入的属性值，则子组件可以使用此属性
+                props:["msg","car"]
+            }
+        }
+    });
+</script>
