@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父组件和子组件通信</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        #app{
+            width: 80%;
+            height: 400px;
+            background-color: skyblue;
+            border: 2px solid black;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>我是王健林---{{gift}}</h1>
+
+        <!-- 子组件通过自定义事件，调用父组件的定义的方法传递数据 -->
+        <wsc @gift="receive($event)"></wsc>
+    </div>
+
+    <!-- 子组件 -->
+    <template id="wsc">
+        <div>
+            <h1>我是王思聪</h1>
+            <button @click="send">单击给我老子送礼物</button>
+        </div>
+    </template>
+</body>
+</html>
+<script>
+/**
+ * 父组件向子组件传值
+ * 1、父组件通过v-bind(简写:)以动态属性的形式给子组件传值
+ * 2、子组件通过props数组来接收父组件数据
+ */
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            gift:""
+        },
+        methods: {
+            receive(gift){
+                this.gift = gift;
+            }
+        },
+        components:{
+            wsc:{
+                template:"#wsc",
+                data() {
+                    return {
+                        msg:"熊猫TV"
+                    }
+                },
+                methods: {
+                    send(){ //给建林送礼物
+                        //出发自定义事件通过$emit方法
+                        this.$emit("gift",this.msg);
+                    }
+                },
+            }
+        }
+    });
+</script>
