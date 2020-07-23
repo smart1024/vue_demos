@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model指令使用</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+        <!-- 数据双向绑定一般用于表单元素 -->
+        <input type="text" v-model="msg">
+    </div>
+</body>
+</html>
+<script>
+    //双向绑定:表单数据变化，属性值也会变化，属性值变化，表单内容也会变化
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"我是实例数据"
+        }
+    });
+    //修改vm数据
+    vm.msg = "哈哈哈";
+</script>
