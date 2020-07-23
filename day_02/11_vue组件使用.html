@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件的使用</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            width: 100px;
+            height: 100px;
+            background-color: cyan;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 以标签形式使用组件 -->
+        <one></one>
+
+        <ll></ll>
+        <ll></ll>
+        <ll></ll>
+
+        <gen></gen>
+
+        <!-- 驼峰式组件名，使用标签时用中划线连接 -->
+        <say-call></say-call>
+
+        <xiaowu></xiaowu>
+    </div>
+    <hr>
+    <!-- 下面是组件模板 -->
+    <template id="erha">
+        <!-- 必须唯一根元素 -->
+        <p @click="add">
+            {{msg}}
+        </p>
+    </template>
+
+    <template id="gen">
+        <div>
+            <ul>
+                <xiaowu></xiaowu>
+                <li v-for="item in arr">{{item}}</li>
+            </ul>
+        </div>
+    </template>
+
+    <template id="memeda">
+        <div>
+            么么哒
+        </div>
+    </template>
+
+    <!-- 全局组件 -->
+    <template id="sina">
+        <div>
+            <a href="http://www.sina.com">新浪</a>
+        </div>
+    </template>
+</body>
+</html>
+<script>
+    /**
+     * 1、组件：可重复使用的模板代码
+     * 2、Vue组件有两种：全局组件和局部组件
+     * 3、局部组件必须在components属性里注册
+     * 4、局部组件不能嵌套使用
+     * 5、局部不能再根组件以外使用
+     * 6、template里面必须有根组件，否则不显示
+     * 7、全局组件必须在Vue实例创建之前注册
+     * 8、全局组件可以在其他组件模板中使用
+     */
+    
+     //注册全局组件
+    Vue.component("xiaowu",{
+        template:"#sina"
+    });
+    
+    var vm = new Vue({
+        el:"#app",
+        data:{
+
+        },
+        methods: {
+            
+        },
+        watch: {
+            
+        },
+        components:{//注册局部组件
+            one:{
+                //模板
+                template:"<ul><li>吃饭</li></ul>"
+            },
+            ll:{ //模板组件 通过选择器匹配模板
+                template:"#erha",
+                data() {//组件的数据必须有返回值
+                    return { //子组件必须返回对象，做到数据独立
+                        msg:1
+                    }
+                },
+                methods: { //组件的事件处理函数
+                    add(){
+                        this.msg++;
+                    }
+                },
+            },
+            gen:{
+                template:"#gen",
+                data(){ //组件通过data函数return返回数据
+                    return {
+                        arr:["吃饭","喝酒","烫头"]
+                    }
+                }
+            },
+            sayCall:{
+                template:"#memeda"
+            }
+        }
+    });
+
+    
+    
+</script>
