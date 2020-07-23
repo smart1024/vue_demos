@@ -49,7 +49,7 @@
                     }
                 },
                 mounted() {
-                    //哥哥组件接收弟弟数据
+                    //哥哥组件接收弟弟数据（监听事件）
                     this.$bus.$on("sendCar",($event)=>{
                         this.gift = $event;
                     })
