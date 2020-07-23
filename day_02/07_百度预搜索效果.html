@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度预搜索效果</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>请输入搜索内容</h1>
+        <div>{{content}}</div> 
+        <input type="text" v-model="content">
+        <ul>
+            <li v-for="item in arr">{{item}}</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            content:"",
+            arr:[]
+        },
+        watch: {//监听属性值变化
+            content(a){ //函数名必须跟属性名一样
+                console.log(a);
+                var path = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+a+"&cb=a";
+                //JsonP跨域拉取数据
+                /*
+                    JsonP实现原理:
+                    1、利用script标签src属性
+                    2、函数声明和调用放在不同服务器上面（这里的a方法在服务器声明，在本机调用）
+                    3、Dom动态创建script(script标签天生跨域)
+                */
+               var script = document.createElement("script");
+               script.src= path;
+               document.body.appendChild(script);
+            }
+        },
+    });
+
+    //百度返回是一个函数
+    function a(obj){
+        console.log(obj);
+        vm.arr = obj.s;
+    }
+</script>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3新增动画特效</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            position: relative;
+            width: 300px;
+            height: 150px;
+            background-color: aqua;
+            /**
+            1、动画名
+            2、动画执行时间
+            3、动画形式(ease-in 慢入 ease-out慢出)
+            4、动画第一执行延迟时间
+            5、重复次数
+            */
+            animation: erha 3s linear 0s infinite;
+        }
+
+        /**
+        1、动画先声明后使用
+        2、浏览器私有前缀 
+        webkit 谷歌浏览器
+        ms    微软
+        moz   火狐
+        o     欧朋
+        */
+        @-webkit-keyframes erha{
+            from{
+                left: 0px;
+                background-color: cyan;
+                font-size: 10px;
+            }
+
+            to{
+                left: 600px;
+                background-color: red;
+                border-radius: 0px 0px 100px 0px;
+                font-size: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- css动画 -->
+<div>
+    你好
+</div>
+</body>
+</html>
