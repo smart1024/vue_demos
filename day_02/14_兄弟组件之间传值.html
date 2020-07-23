@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>兄弟组件间传值</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <son></son>
+        <son1></son1>
+    </div>
+
+    <template id="son">
+        <div>
+            <h1>大儿子组件----弟弟送的{{gift}}</h1>
+        </div>
+    </template>
+
+    <template id="son1">
+        <div>
+            <h1>小儿子组件---{{car}}</h1>
+            <button @click="sendCar">单击我给哥哥送礼物</button>
+        </div>
+    </template>
+</body>
+</html>
+
+<script>
+
+    /**
+     * 兄弟组件间传值：中央管道
+     * 原理是原型
+     */
+
+    Vue.prototype.$bus = new Vue;
+    var vm = new Vue({
+        el:"#app",
+        data:{
+
+        },
+        components:{
+            son:{
+                template:"#son",
+                data() {
+                    return {
+                        gift:""
+                    }
+                },
+                mounted() {
+                    //哥哥组件接收弟弟数据
+                    this.$bus.$on("sendCar",($event)=>{
+                        this.gift = $event;
+                    })
+                },
+            },
+            son1:{
+                template:"#son1",
+                data() {
+                    return {
+                        car:"奔驰"
+                    }
+                },
+                methods: {
+                    //给哥哥传数据
+                    sendCar(){
+                        this.$bus.$emit("sendCar",this.car);
+                    } 
+                },
+            }
+        }
+    });
+</script>
