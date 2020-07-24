@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Events</h1>
+        <label>姓名</label>
+        <!-- 输入后按enter才会触发logName方法 -->
+        <input type="text" v-on:keyup.enter="logName">
+<hr>
+        <label>年龄</label>
+        <input type="text" v-on:keyup="logAge">
+<hr>
+        <label>职务</label>
+        <!-- 输入后按alt+enter组合按才会触发logPos方法 -->
+        <input type="text" v-on:keyup.alt.enter="logPos">
+
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        methods: {
+            logName(){
+                console.log("正在输入姓名");
+            },
+            logAge(){
+                console.log("正在输入年龄");
+            },
+            logPos(){
+                console.log("正在输入职务");
+            }
+        },
+    });
+</script>
