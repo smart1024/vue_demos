@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>计算属性computed:只改变变化的部分</h1>
+
+        <!-- methods -->
+        <button @click="a++">Add to A</button>
+        <button @click="b++">Add to B</button>
+
+        <p>{{a}}</p>
+        <p>{{b}}</p>
+        <!-- 方法 -->
+        <p>age+a={{addToA()}}</p>
+        <p>age+a={{addToB()}}</p>
+
+        <!-- computed -->
+        <p>computed： age+a={{add2A}}</p>
+        <p>computed： age+b={{add2B}}</p>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data() {
+            return {
+                a:0,
+                b:0,
+                age:30
+            }
+        },
+        methods: {//method 一个属性发生变化时，其他方法也会调用，性能低,计算属性能不会有此问题
+            addToA(){
+                console.log("addToA()");
+                return this.a+this.age;
+            },
+            addToB(){
+                console.log("addToB()");
+                return this.b+this.age;
+            }
+        },
+        computed: {
+            add2A(){
+                console.log("add2A");
+                return this.a+this.age;
+            },
+            add2B(){
+                console.log("add2B");
+                return this.b+this.age;
+            }
+        },
+    });
+</script>
