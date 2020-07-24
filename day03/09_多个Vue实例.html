@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>多个Vue实例</h1>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <h1>{{greet}}</h1>
+    </div>
+
+    <div id="app1">
+        <h1>{{title}}</h1>
+        <h1>{{greet}}</h1>
+        <button @click="changeAppTitle">改变app的title</button>
+    </div>
+</body>
+</html>
+<script>
+    // 多个Vue实例
+    const vm = new Vue({
+        el:"#app",
+        data() {
+            return {
+                title:"this is app",
+            }
+        },
+        computed: {
+            greet(){
+                return "hello 小李子 app";
+            }
+        },
+    });
+
+    const vm1 = new Vue({
+        el:"#app1",
+        data() {
+            return {
+                title:"this is app1",
+            }
+        },
+        methods: {
+            changeAppTitle(){
+                vm.title = "vm1容器方法改变vm容器的title";
+            }
+        },
+        computed: {
+            greet(){
+                return "hello 小李子 app1";
+            }
+    }});
+
+    vm1.title="在外部改变vm1的title"
+</script>
