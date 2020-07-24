@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据的双向绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>双向绑定运用于 input/ select /textarea 能输入的控件</h1>
+        <h2>{{name}}</h2>
+        <label for="">姓名</label>
+        <!-- lazy修饰，失去焦点会赋值 -->
+        <input type="text" v-model.lazy="name">
+        <hr>
+        <h2>{{age}}</h2>
+        <label for="">年龄</label>
+        <input type="text" v-model="age">
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data() {
+            return {
+                name:"",
+                age:""
+            }
+        },
+    });
+</script>
