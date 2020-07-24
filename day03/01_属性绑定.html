@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind属性绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <a v-bind:href="website">百度</a>
+        <hr>
+        <!-- v-bind绑定属性简写 -->
+        <a :href="website">baidu</a>
+
+        <!-- 给标签绑定html片段 -->
+        <p v-html="taobao"></p>
+
+        <!-- 绑定文本内容 -->
+        <p v-text="msg"></p>
+
+        <!-- 给html标签动态绑定数据 -->
+        <p><input type="text" v-bind:value="name"></p>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data() {
+            return {
+                name:"小李子",
+                website:"https://www.baidu.com",
+                taobao:"<a href='https://www.taobao.com'>淘宝</a>",
+                msg:"绑定文本内容"
+            }
+        },
+    });
+</script>
