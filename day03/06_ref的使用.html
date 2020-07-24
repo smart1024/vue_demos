@@ -38,5 +38,13 @@
                 this.age = this.$refs.age.value;
             }
         },
+        watch: {//监听属性值，调试使用，开发时不建议使用
+            name(value,oldValue){ //新值和旧值，
+                console.log("value="+value+",oldValue="+oldValue);
+            },
+            age(value,oldValue){
+                console.log("value="+value+",oldValue="+oldValue);
+            }
+        },
     });
 </script>
