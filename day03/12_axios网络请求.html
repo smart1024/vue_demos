@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <!-- Axios网络请求 -->
+    <div id="app">
+        <form action="" @submit.prevent="onSubmit">
+            <input type="text" v-model="todo.title">
+            <input type="checkbox" v-model="todo.completed">
+            <input type="submit" value="提交">
+        </form>
+        <ul>
+            <li v-for="todo in todos">
+                <h1>{{todo.title}}</h1>
+                <p v-if="todo.completed">{{todo.completed}}</p>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    var vm= new Vue({
+        el:"#app",
+        data() {
+            return {
+                todos:[],
+                todo:{
+                    title:"",
+                    completed:false
+                }
+            }
+        },
+        methods: {
+            onSubmit(){
+                //axios post 请求
+                axios.post('http://jsonplaceholder.typicode.com/todos',this.todo).then(res=>{
+                    this.todos.unshift(res.data);
+                })
+            }
+        },
+        mounted() {
+            //axios get请求
+            axios.get('http://jsonplaceholder.typicode.com/todos').then(res=>{
+                this.todos = res.data
+            })
+        },
+    });
+</script>
