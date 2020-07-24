@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ref的使用</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h1>一个对象，持有注册过 ref attribute 的所有 DOM 元素和组件实例</h1>
+        <h2>{{name}}</h2>
+        <label for="">姓名</label>
+        <!-- 注册ref属性相当于控件的引用 -->
+        <input type="text" ref="name" v-on:keyup="getName">
+        <hr>
+        <h2>{{age}}</h2>
+        <label for="">年龄</label>
+        <input type="text" ref="age" @keyup="getAge">
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data() {
+            return {
+                name:"",
+                age:""
+            }
+        },
+        methods: {
+            getName(){
+                this.name = this.$refs.name.value;
+            },
+            getAge(){
+                this.age = this.$refs.age.value;
+            }
+        },
+    });
+</script>
