@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .changeColor{
+            background-color: red;
+        }
+        .computedChangeColor{
+            background-color: cyan;
+        }
+        .changeLen span:after{
+            content: "小李子";
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>动态绑定样式两种方法</h1>
+        <h2>实例1：属性绑定</h2>
+
+        <div @click="changeColor= !changeColor" v-bind:class="{changeColor:changeColor}">
+            <span>Hello</span>
+        </div>
+
+        <h2>实例2：计算属性实现类的绑定</h2>
+        <button @click="computedChangeColor = !computedChangeColor">改变颜色</button>
+
+        <button @click="changeLen=!changeLen">改变长度</button>
+        <div v-bind:class="computedAttrs">
+            <span>Hello</span>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data() {
+            return {
+                changeColor:false,
+                computedChangeColor:false,
+                changeLen:false
+            }
+        },
+        computed: {
+            computedAttrs(){
+                return { //绑定两个class
+                        computedChangeColor:this.computedChangeColor,
+                        changeLen:this.changeLen
+                    };
+            }
+        },
+    });
+</script>
