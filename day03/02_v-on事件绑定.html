@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-on事件绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #canvas{
+            width: 600px;
+            height: 600px;
+            background-color: aqua;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Events</h1>
+
+        <p>我的年龄是{{age}}</p>
+
+        <!-- 表达式直接改变属性 -->
+        <button v-on:click="age++">add a year</button>
+        <!-- v-on:click简写@click -->
+        <button @click="age--">minus a year</button>
+
+        <hr>
+        <!-- 通过调用方法改变属性 -->
+        <!-- 无参函数括号可以省略 -->
+        <button @click="add(1)">增加一岁</button>
+        <button @click="minus(1)">减小一岁</button>
+
+        <hr>
+        <!-- 鼠标双击事件 -->
+        <button @dblclick="add(10)">double click add 10 year</button>
+        <button @dblclick=minus(10)>double click minus 10 year</button>
+
+        <!-- 鼠标移动事件 -->
+
+        <div id="canvas" v-on:mousemove="updateXY">{{x}} , {{y}}</div>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data() {
+            return {
+                age:30,
+                x:0,
+                y:0
+            }
+        },
+        methods: {
+            add(value){
+                this.age+=value;
+            },
+            minus(value){
+                this.age-=value;
+            },
+            updateXY(event){
+                console.log(event);
+                this.x= event.offsetX;
+                this.y = event.offsetY;
+            }
+        },
+    });
+</script>
