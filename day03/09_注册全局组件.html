@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>多个Vue实例</h1>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <Greeting></Greeting>
+    </div>
+
+    <div id="app1">
+        <h1>{{title}}</h1>
+        <Greeting></Greeting>
+    </div>
+</body>
+</html>
+<script>
+    //创建全局组件
+    Vue.component("Greeting",{
+        // html模板（下面两种写法都可以）
+        template:`<p>这是全局组件，可以在任何实例的容器中使用
+                ---名字{{name}}--性别{{gender}}
+                <button @click="changeName">改名</button>
+            </p>`,
+        // template:
+        // "<p>这是全局组件，可以在任何实例的容器中使用---名字{{name}}--性别{{gender}}</p>",
+        //属性，方法等
+        data() {
+            return {
+                name:"小李子",
+                gender:"男"
+            }
+        },
+        methods:{
+            changeName(){
+                this.name = "改名大李子"
+            }
+        }
+    });
+
+    // 多个Vue实例
+    const vm = new Vue({
+        el:"#app",
+        data() {
+            return {
+                title:"this is app",
+            }
+        },
+        computed: {
+        },
+    });
+
+    const vm1 = new Vue({
+        el:"#app1",
+        data() {
+            return {
+                title:"this is app1",
+            }
+        },
+        methods: {
+    
+        },
+        computed: {
+    }});
+</script>
