@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件修饰符</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- prevent修饰click事件，阻止默认事件 -->
+        <a @click.prevent="handleClick" href="http://www.baidu.com">百度</a>
+        <hr>
+        <!-- once修饰click事件，表示只能点击一次 -->
+        <button @click.once="age++">加一</button>
+        <p>age={{age}}</p>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data() {
+            return {
+                age:10
+            }
+        },
+        methods: {
+            handleClick(){
+                alert("hello");
+            }
+        },
+    });
+</script>
