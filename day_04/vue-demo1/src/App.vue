@@ -34,6 +34,7 @@
     </v-app-bar>
 
     <v-main>
+      <h1>{{url}}</h1>
       <HelloWorld />
     </v-main>
   </v-app>
@@ -49,8 +50,8 @@ export default {
     HelloWorld
   },
 
-  data: () => ({
-    //
+  data: () => ({//配置环境变量，所有vue文件都可以使用
+      url: process.env.VUE_APP_URL
   })
 };
 </script>
