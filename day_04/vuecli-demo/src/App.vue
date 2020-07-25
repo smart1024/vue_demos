@@ -1,33 +1,41 @@
 <template>
   <div id="app">
-      <FormHelper>
-          <!-- 带有slot属性标签元素 -->
-          <h2 slot="title">{{title}}</h2>
-          <p slot="text">这个是文本内容</p>
-      </FormHelper>
+      <!-- 直接使用是没有问题的 -->
+      <!-- <form-one></form-one>
+      <form-two></form-two> -->
+
+    <!--keep-alive组件帮住用户缓存表单数据，组件切换数据不会丢失 -->
+    <keep-alive>
+        <!-- 下面演示动态组件 is属性值用来确定显示哪个组件-->
+        <component :is="component"></component>
+    </keep-alive>
+    <button @click="component ='form-one'">显示Form One</button>
+    <button @click="component ='form-two'">显示Form Two</button>
   </div>
 </template>
 
 <script>
-import FormHelper from "./components/FormHelper"
+
+import FormOne from './components/FormOne';
+import FormTwo from './components/FormTwo';
+
 export default {
   name: 'App',
   data() {
-    return {
-        title:"这个是title"
+    return {//动态绑定组件
+        component:"form-one"
     }
   },
   methods: {
     
   },
   components: { //2、局部注册组件
-    FormHelper
+    "form-one":FormOne,
+    "form-two":FormTwo
   }
 }
 </script>
 
 <style scoped>
-h1{
-  color: purple;
-}
+
 </style>
