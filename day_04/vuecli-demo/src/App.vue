@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header :msg="msg"/>
+    <Header @changeMsg="changeMsg" :msg="msg"/>
     <!-- 3、调用组件 -->
     <!-- 属性传值：传值(基本数据类型)和传引用(对象类型) -->
     <!-- 传引用 -->
@@ -34,6 +34,11 @@ export default {
               {name:"小李子6",age:30,show:false},
               {name:"小李子7",age:30,show:false}
             ]
+    }
+  },
+  methods: {
+    changeMsg(msg){
+      this.msg = msg;
     }
   },
   components: { //2、局部注册组件

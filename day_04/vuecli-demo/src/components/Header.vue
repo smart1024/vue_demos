@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <div @click="changeMsg" class="header">
        <h1>{{title}}</h1>
        <p>{{msg}}</p>
     </div>
@@ -16,6 +16,12 @@ export default {
     data() {
         return {
             title:"Vue components Demo"
+        }
+    },
+    methods: {
+        changeMsg(){
+            //注册自定义事件
+            this.$emit("changeMsg","小李子通过$emit修改了msg值");
         }
     },
 }
