@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-    <Header />
+    <Header :msg="msg"/>
     <!-- 3、调用组件 -->
+    <!-- 属性传值：传值(基本数据类型)和传引用(对象类型) -->
+    <!-- 传引用 -->
+    <Users :users="users"/>
+    <hr>
     <Users :users="users"/>
     <!-- <users></users> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <Footer />
+    <!-- 传值 -->
+    <Footer :msg="msg"/>
   </div>
 </template>
 
@@ -19,6 +24,7 @@ export default {
   name: 'App',
   data() {
     return {
+      msg:"小李子",
       users:[
               {name:"小李子1",age:30,show:false},
               {name:"小李子2",age:30,show:false},

@@ -9,6 +9,8 @@
                 <h3 v-show="user.show">{{user.age}}</h3>
             </li>
         </ul>
+
+        <button @click="deleteUser">删除用户</button>
     </div>
 </template>
 
@@ -27,6 +29,11 @@ export default {
     data() {
         return {
             
+        }
+    },
+    methods: {
+        deleteUser(){
+            this.users.pop();
         }
     },
 }
