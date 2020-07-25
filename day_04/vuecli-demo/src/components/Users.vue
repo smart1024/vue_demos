@@ -1,6 +1,7 @@
 <template>
     <div class="users">
         <h1>Users.vue</h1>
+        <p>{{users}}</p>
         <ul>
             <!-- 单击显示隐藏 -->
             <li @click="user.show = !user.show" v-for="(user,index) in users" :key="index">
@@ -13,17 +14,19 @@
 
 <script>
 export default {
+    // props数组元素可像data里面的属性一样直接使用
+    //写法1
+    // props:["users"],
+    //写法2
+    props:{ //父组件给子组件传值
+        users:{
+            type:Array, //指定属性类型
+            required:true //是否必传
+        }
+    },
     data() {
         return {
-            users:[
-                {name:"小李子1",age:30,show:false},
-                {name:"小李子2",age:30,show:false},
-                {name:"小李子3",age:30,show:false},
-                {name:"小李子4",age:30,show:false},
-                {name:"小李子5",age:30,show:false},
-                {name:"小李子6",age:30,show:false},
-                {name:"小李子7",age:30,show:false}
-                ]
+            
         }
     },
 }
