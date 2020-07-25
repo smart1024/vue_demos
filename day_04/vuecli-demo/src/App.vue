@@ -1,52 +1,27 @@
 <template>
   <div id="app">
-    <Header @changeMsg="changeMsg" :msg="msg"/>
-    <!-- 3、调用组件 -->
-    <!-- 属性传值：传值(基本数据类型)和传引用(对象类型) -->
-    <!-- 传引用 -->
-    <Users :users="users"/>
-    <hr>
-    <Users :users="users"/>
-    <!-- <users></users> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <!-- 传值 -->
-    <Footer :msg="msg"/>
+      <FormHelper>
+          <!-- 带有slot属性标签元素 -->
+          <h2 slot="title">{{title}}</h2>
+          <p slot="text">这个是文本内容</p>
+      </FormHelper>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// 1.局部引入组件
-import Users from "./components/Users"
-import Header from "./components/Header"
-import Footer from "./components/Footer"
+import FormHelper from "./components/FormHelper"
 export default {
   name: 'App',
   data() {
     return {
-      msg:"小李子",
-      users:[
-              {name:"小李子1",age:30,show:false},
-              {name:"小李子2",age:30,show:false},
-              {name:"小李子3",age:30,show:false},
-              {name:"小李子4",age:30,show:false},
-              {name:"小李子5",age:30,show:false},
-              {name:"小李子6",age:30,show:false},
-              {name:"小李子7",age:30,show:false}
-            ]
+        title:"这个是title"
     }
   },
   methods: {
-    changeMsg(msg){
-      this.msg = msg;
-    }
+    
   },
   components: { //2、局部注册组件
-    // HelloWorld
-    // users:Users   相当于取别名，使用时标签用users
-    Users,
-    Header,
-    Footer
+    FormHelper
   }
 }
 </script>
